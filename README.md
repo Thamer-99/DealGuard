@@ -1,19 +1,14 @@
 # DealGuard
 
-**A promotional-claim verifier: TF-IDF retrieval + deterministic verification, with an optional, guarded Gemini explanation layer.**
-Developed during SDAIA Academy's Generative AI Solutions Development Program
-([github.com/SDAIAAcademy](https://github.com/SDAIAAcademy)).
+DealGuard checks a promotional claim against the coupon policy and shows the shopper the eligible discount, final price, and supporting evidence. The demo uses fictional offers and policies.
 
-- 🌐 **Live Demo:** [https://dealguard-a7k8.onrender.com/](https://dealguard-a7k8.onrender.com/)  
-  *(Hosted on Render free tier. May take 30–60 seconds to spin up on initial load after inactivity.)*
-- 💻 **GitHub Repository:** [https://github.com/Thamer-99/DealGuard](https://github.com/Thamer-99/DealGuard)
-- 📋 **Presentation Material for Team:** [PRESENTATION_HANDOFF.md](PRESENTATION_HANDOFF.md)
+[Open the live demo](https://dealguard-a7k8.onrender.com/) · [Run locally](#setup-and-launch-local) · [Presentation notes](PRESENTATION_HANDOFF.md)
 
-> **Synthetic data only.** All policies, coupon codes and offers are fictional. No real merchants or offers are involved.
+![DealGuard promotional claim verification demo](screenshots/dealguard-demo.png)
 
-> **Transparency notice.** By default DealGuard uses TF-IDF *retrieval*, deterministic Python rules and a *template* explanation (no LLM).
-> If `GEMINI_API_KEY` is set in the environment, Gemini may **reword** the already-verified result; it never calculates prices or decides eligibility. Without an API key, Gemini generation remains optional and inactive, automatically defaulting to safe deterministic template explanations (as seen on the live demo).
-> The UI clearly labels every explanation as *template-generated* or *LLM-generated*. The Gemini path is covered by mocked tests.
+The demo may take a moment to start after inactivity. Python rules determine eligibility and calculate prices. By default, a template explains the result. When configured, Gemini can reword that explanation. The interface labels which method produced it.
+
+Developed during [SDAIA Academy](https://github.com/SDAIAAcademy)'s Generative AI Solutions Development Program.
 
 ## Objectives
 - Demonstrate a grounded, auditable pipeline: every verdict cites the policy it came from.
@@ -84,9 +79,6 @@ Input: price `1000` SAR, category `Fashion`, coupon `SAVE20`, claim `20% off eve
 | Source | `DEAL-SAVE20` |
 
 Try also: `SAVE20` + `Electronics` (excluded), `FLASH50` (expired), `FAKE99` (refused: unknown coupon).
-
-## Demo
-![DealGuard Demo](screenshots/dealguard-demo.png)
 
 ## Tests
 ```bash
